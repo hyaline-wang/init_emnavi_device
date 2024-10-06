@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ]; then
+  echo "Error: This script must be run as root."
+  exit 1
+fi
+
 # 检查是否提供了用户名参数
 if [ -z "$1" ]; then
     echo "请提供用户名"
@@ -8,6 +13,12 @@ fi
 
 USERNAME=$1
 NEW_PASSWORD="123456"
+
+# 检查 username 是否存在于 /etc/passwd 中
+if ! grep -q "^$USERNAME:" /etc/passwd; then
+  echo "Error: User '$USERNAME' does not exist."
+  exit 1
+fi
 
 # 重置用户密码为123456
 echo "$USERNAME:$NEW_PASSWORD" | chpasswd
