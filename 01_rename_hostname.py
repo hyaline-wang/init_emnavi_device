@@ -9,7 +9,30 @@ def is_root():
 	return os.geteuid() == 0
 # 在生成主机名之后，设置主机名
 def set_hostname(hostname):
+    current_hostname = socket.gethostname()
     os.system(f"sudo hostnamectl set-hostname {hostname}")
+    # 更新 /etc/hosts 文件
+    update_etc_hosts(current_hostname, hostname)
+
+def update_etc_hosts(old_hostname, new_hostname):
+    hosts_file = '/etc/hosts'
+    
+    # 读取 /etc/hosts 内容
+    with open(hosts_file, 'r') as file:
+        lines = file.readlines()
+    
+    # 查找并替换旧的主机名为新的主机名
+    new_lines = []
+    for line in lines:
+        # 替换所有出现的旧主机名
+        new_lines.append(line.replace(old_hostname, new_hostname))
+    
+    # 以写入模式重新写入文件
+    with open(hosts_file, 'w') as file:
+        file.writelines(new_lines)
+
+
+
 
 # 生成随机后缀
 def generate_random_suffix(length=4):
