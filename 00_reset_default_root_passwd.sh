@@ -5,14 +5,8 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-# 检查是否提供了用户名参数
-if [ -z "$1" ]; then
-    echo "请提供用户名"
-    exit 1
-fi
-
-USERNAME=$1
-NEW_PASSWORD="123456"
+USERNAME=root
+NEW_PASSWORD="emNavi"
 
 # 检查 username 是否存在于 /etc/passwd 中
 if ! grep -q "^$USERNAME:" /etc/passwd; then
