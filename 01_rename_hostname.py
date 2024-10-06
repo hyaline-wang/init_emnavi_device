@@ -26,9 +26,9 @@ def generate_hostname(prefix, drone_type, px4_sys_id):
     return hostname
 
 if __name__ == "__main__": 
-	if not is_root(): 
-		print("该脚本需要以 root 权限执行。请使用 sudo 运行。") 
-		sys.exit(1)
+    if not is_root(): 
+        print("该脚本需要以 root 权限执行。请使用 sudo 运行。") 
+        sys.exit(1)
 
     # 设置命令行参数解析
     parser = argparse.ArgumentParser(description="生成无人机主机名")
