@@ -4,6 +4,7 @@ import string
 import argparse
 import os
 import sys
+import socket
 
 def is_root(): 
 	return os.geteuid() == 0
