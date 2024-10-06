@@ -1,0 +1,1 @@
+# init_emnavi_device
