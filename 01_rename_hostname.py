@@ -66,4 +66,5 @@ if __name__ == "__main__":
     hostname = generate_hostname(args.prefix, args.drone_type, args.px4_sys_id)
     print(f"生成的主机名: {hostname}")
     # set hostname 
-    # 设置系统主机名 set_hostname(hostname)
+    # 设置系统主机名 
+    set_hostname(hostname)
