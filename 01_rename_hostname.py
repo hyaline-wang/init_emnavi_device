@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     # 设置命令行参数解析
     parser = argparse.ArgumentParser(description="生成无人机主机名")
-    parser.add_argument("--prefix", type=str, help="前缀(默认为 'emnavi')")
+    parser.add_argument("--prefix", type=str, help="前缀(默认为 'emNavi')")
     parser.add_argument("--drone_type", type=str, required=True, help="无人机类型")
     parser.add_argument("--px4_sys_id", type=str, required=True, help="PX4系统ID")
 
