@@ -44,7 +44,7 @@ def generate_random_suffix(length=4):
 # 生成主机名
 def generate_hostname(prefix, drone_type, px4_sys_id):
     if not prefix:
-        prefix = "emnavi"  # 如果没有提供前缀，则使用默认值
+        prefix = "emNavi"  # 如果没有提供前缀，则使用默认值
     random_suffix = generate_random_suffix()
     hostname = f"{prefix}-{drone_type}-{px4_sys_id}-{random_suffix}"
     return hostname
