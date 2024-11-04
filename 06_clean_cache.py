@@ -16,13 +16,21 @@ def clean_cache_root():
     # Clean apt cache
     subprocess.run(['apt', 'clean'], check=True)
 def clean_cache_user(username):
-
-    with open('/home/emnavi/.bash_history', 'w'):
-        pass
     # Remove cache directories
-    subprocess.run(['rm', '-rf', '/home/emnavi/.cache/*'], check=True)
+    command = f'rm -rf /home/{username}/.cache/'
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    if(result.returncode == 0):
+        print("rm -rf /home/{username}/.cache/")
+    command = f'rm /home/{username}/.bash_history'
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    if(result.returncode == 0):
+        print("'rm /home/{username}/.bash_history")
     
 
 if __name__ == "__main__":
-    clean_cache_root()
-    clean_cache_user('emnavi')
+    if(os.getuid() == 0):
+        clean_cache_root()
+        clean_cache_user('emnavi')
+    else:
+        print("Please run this script as root")
+    
